@@ -32,7 +32,7 @@ export default function SideDrawer({
           <Drawer.Body>{children}</Drawer.Body>
           <Drawer.Footer>
             {footer || (
-              <Button slot="close" variant="secondary">
+              <Button slot="close" variant="outline">
                 {t('close')}
               </Button>
             )}

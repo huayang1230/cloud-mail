@@ -63,15 +63,27 @@ export default function LoginPage() {
   }, [email, settings.loginDomain, suffix]);
 
   const backgroundStyle = useMemo(() => {
-    if (!settings.background) return {};
+    if (!settings.background) {
+      return {
+        backgroundImage: dark
+          ? 'radial-gradient(circle at 18% 18%, rgb(45 212 191 / 0.18), transparent 30%), radial-gradient(circle at 78% 12%, rgb(96 165 250 / 0.18), transparent 34%), radial-gradient(circle at 58% 88%, rgb(168 85 247 / 0.14), transparent 36%), linear-gradient(135deg, #111827 0%, #18181b 52%, #0f172a 100%)'
+          : 'radial-gradient(circle at 18% 18%, rgb(125 211 252 / 0.42), transparent 30%), radial-gradient(circle at 82% 12%, rgb(167 139 250 / 0.34), transparent 34%), radial-gradient(circle at 64% 86%, rgb(45 212 191 / 0.24), transparent 36%), linear-gradient(135deg, #f8fafc 0%, #eef2ff 48%, #f5f3ff 100%)',
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        height: '100dvh',
+        minHeight: '100dvh',
+      };
+    }
     const opacity = Number(settings.loginDarkenFactor ?? 0);
     const url = cvtR2Url(settings.background);
     return {
       backgroundImage: `linear-gradient(rgb(0 0 0 / ${opacity}), rgb(0 0 0 / ${opacity})), url(${url})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
+      height: '100dvh',
+      minHeight: '100dvh',
     };
-  }, [settings.background, settings.loginDarkenFactor]);
+  }, [dark, settings.background, settings.loginDarkenFactor]);
 
   async function saveToken(token: string) {
     localStorage.setItem('token', token);
@@ -120,12 +132,12 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="grid min-h-screen place-items-center bg-background p-6" style={backgroundStyle}>
-      <button className="icon-button fixed right-5 top-5" onClick={() => setDark(!dark)} type="button">
+    <main className="flex min-h-screen items-start justify-center overflow-x-hidden overflow-y-auto bg-background px-4 pb-6 pt-16 sm:items-center sm:p-6" style={backgroundStyle}>
+      <button className="icon-button fixed right-4 top-4 sm:right-5 sm:top-5" onClick={() => setDark(!dark)} type="button">
         {dark ? <Sun className="size-5" /> : <Moon className="size-5" />}
       </button>
       <div
-        className="surface-card w-full max-w-[430px] rounded-[28px] p-8"
+        className="surface-card w-full max-w-[430px] rounded-[28px] p-5 sm:p-8"
         style={{ background: dark ? `rgb(0 0 0 / ${settings.loginOpacity ?? 0.88})` : `rgb(255 255 255 / ${settings.loginOpacity ?? 0.94})` }}
       >
         <div className="mb-8 flex flex-col items-center gap-3 text-center">
@@ -141,7 +153,7 @@ export default function LoginPage() {
         </div>
 
         <div className="space-y-3">
-          <div className="flex overflow-hidden rounded-2xl border border-border bg-field">
+          <div className="flex min-w-0 overflow-hidden rounded-2xl border border-border bg-field">
             <input
               className="min-w-0 flex-1 bg-transparent px-4 py-3 outline-none"
               onChange={(event) => setEmail(event.target.value)}
@@ -150,11 +162,11 @@ export default function LoginPage() {
             />
             {settings.loginDomain !== 1 && !email.includes('@') ? (
               <HeroSelectField
-                className="w-[150px] shrink-0"
+                className="w-[136px] max-w-[48%] shrink-0 sm:w-[150px]"
                 onChange={setSuffix}
                 options={domainList.map((domain) => ({ label: domain, value: domain }))}
                 placeholder="@"
-                triggerClassName="inline-domain-select-trigger h-full rounded-none border-0 bg-transparent px-2 text-sm shadow-none"
+                triggerClassName="inline-domain-select-trigger h-full min-w-0 rounded-none border-0 bg-transparent px-2 text-sm shadow-none"
                 value={suffix}
               />
             ) : null}
@@ -193,7 +205,7 @@ export default function LoginPage() {
             {mode === 'login' ? t('loginBtn') : t('regBtn')}
           </Button>
           {settings.linuxdoSwitch ? (
-            <Button className="w-full" variant="secondary" onPress={linuxDoLogin}>
+            <Button className="w-full" variant="outline" onPress={linuxDoLogin}>
               <img alt="" className="size-5" src="/image/linuxdo.webp" />
               LinuxDo
             </Button>

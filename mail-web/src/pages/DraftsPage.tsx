@@ -70,7 +70,7 @@ export default function DraftsPage() {
                   isIconOnly
                   onConfirm={() => remove(draft.draftId)}
                   title={t('deleteDraftConfirmTitle')}
-                  variant="tertiary"
+                  variant="outline"
                 >
                   <Trash2 className="size-5" />
                 </ConfirmButton>

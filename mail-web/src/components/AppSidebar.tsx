@@ -210,7 +210,7 @@ export default function AppSidebar() {
               aria-label={t('moreActions')}
               className="sidebar-more-button shrink-0"
               isIconOnly
-              variant="secondary"
+              variant="outline"
             >
               <MoreHorizontal className="size-5" />
             </Button>

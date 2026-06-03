@@ -317,7 +317,7 @@ export default function Composer() {
             ) : null}
           </div>
           <div className="flex items-center gap-2">
-            <Button isDisabled={sending} variant="secondary" onPress={saveDraft}>
+            <Button isDisabled={sending} variant="outline" onPress={saveDraft}>
               {t('drafts')}
             </Button>
             <Button isPending={sending} onPress={send}>

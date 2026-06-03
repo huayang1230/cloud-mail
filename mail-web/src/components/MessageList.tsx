@@ -269,7 +269,7 @@ export default function MessageList({ kind, onOpenDetail }: Props) {
             <Button
               key={type || 'all'}
               size="sm"
-              variant={allMailType === type ? 'primary' : 'tertiary'}
+              variant={allMailType === type ? 'primary' : 'outline'}
               onPress={() => {
                 setAllMailType(type);
                 setTimeout(refresh);
@@ -304,7 +304,7 @@ export default function MessageList({ kind, onOpenDetail }: Props) {
                   isIconOnly
                   onConfirm={removeSelected}
                   title={t('deleteSelectedEmailsConfirmTitle')}
-                  variant="tertiary"
+                  variant="outline"
                 >
                   <Trash2 className="size-5" />
                 </ConfirmButton>
@@ -383,7 +383,6 @@ export default function MessageList({ kind, onOpenDetail }: Props) {
                         <div className={`min-w-0 flex-1 truncate text-[17px] ${unread ? 'font-bold' : 'font-semibold'}`}>
                           {email.name || email.sendEmail || email.toEmail}
                         </div>
-                        {unread ? <span className="size-2 rounded-full bg-blue-500" /> : null}
                       </div>
                       <div className={`line-clamp-1 text-[15px] ${unread ? 'font-semibold' : ''}`}>
                         {email.code ? (
@@ -404,9 +403,12 @@ export default function MessageList({ kind, onOpenDetail }: Props) {
                       <div className="line-clamp-1 text-[15px] text-muted">{email.formatText || '\u200B'}</div>
                     </div>
                     <div className="flex flex-col items-end justify-between gap-2">
-                      <span className={`whitespace-nowrap text-sm ${unread ? 'font-bold' : 'text-muted'}`}>
-                        {email.formatCreateTime}
-                      </span>
+                      <div className="flex items-center justify-end gap-2">
+                        <span className={`whitespace-nowrap text-sm ${unread ? 'font-bold' : 'text-muted'}`}>
+                          {email.formatCreateTime}
+                        </span>
+                        {unread ? <span aria-hidden="true" className="size-2 rounded-full bg-blue-500" /> : null}
+                      </div>
                       <div className="flex items-center gap-1">
                         {email.code ? (
                           <Tooltip content={t('copyCode')}>

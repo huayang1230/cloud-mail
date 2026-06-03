@@ -58,7 +58,7 @@ export default function ConfirmButton({
                   <p>{description || t('deleteConfirmDescription')}</p>
                 </AlertDialog.Body>
                 <AlertDialog.Footer>
-                  <Button isDisabled={pending} onPress={close} variant="tertiary">
+                  <Button isDisabled={pending} onPress={close} variant="outline">
                     {cancelText || t('cancel')}
                   </Button>
                   <Button

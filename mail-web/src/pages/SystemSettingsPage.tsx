@@ -416,7 +416,7 @@ export default function SystemSettingsPage() {
 
   function renderSite() {
     return (
-      <SettingsPanel action={<Button onPress={saveSite}>{t('save')}</Button>} description={t('sysSiteHint')} title={t('sysSite')}>
+      <SettingsPanel action={<Button className="settings-save-button" variant="outline" onPress={saveSite}>{t('save')}</Button>} description={t('sysSiteHint')} title={t('sysSite')}>
         <SettingRow description={t('websiteRegDesc')} label={t('websiteReg')}>
           <EnabledSwitch
             onChange={(value) => updateSetting('register', value)}
@@ -477,7 +477,7 @@ export default function SystemSettingsPage() {
   function renderAppearance() {
     const backgroundUrl = cvtR2Url(settings.background);
     return (
-      <SettingsPanel action={<Button onPress={saveAppearance}>{t('save')}</Button>} description={t('sysAppearanceHint')} title={t('sysAppearance')}>
+      <SettingsPanel action={<Button className="settings-save-button" variant="outline" onPress={saveAppearance}>{t('save')}</Button>} description={t('sysAppearanceHint')} title={t('sysAppearance')}>
         <SettingRow label={t('websiteTitle')}>
           <TextInput onChange={(value) => updateSetting('title', value)} value={asString(settings.title)} />
         </SettingRow>
@@ -515,7 +515,7 @@ export default function SystemSettingsPage() {
 
   function renderMail() {
     return (
-      <SettingsPanel action={<Button onPress={saveMail}>{t('save')}</Button>} description={t('sysMailHint')} title={t('sysMail')}>
+      <SettingsPanel action={<Button className="settings-save-button" variant="outline" onPress={saveMail}>{t('save')}</Button>} description={t('sysMailHint')} title={t('sysMail')}>
         <SettingRow label={t('receiveEmail')}>
           <EnabledSwitch value={asNumber(settings.receive, 1)} onChange={(value) => updateSetting('receive', value)} />
         </SettingRow>
@@ -553,7 +553,7 @@ export default function SystemSettingsPage() {
 
   function renderStorage() {
     return (
-      <SettingsPanel action={<Button onPress={saveStorage}>{t('save')}</Button>} description={t('sysStorageHint')} title={t('sysStorage')}>
+      <SettingsPanel action={<Button className="settings-save-button" variant="outline" onPress={saveStorage}>{t('save')}</Button>} description={t('sysStorageHint')} title={t('sysStorage')}>
         <SettingRow description={t('ossDomainDesc')} label={t('osDomain')}>
           <TextInput onChange={(value) => updateSetting('r2Domain', value)} placeholder="static.example.com" value={asString(settings.r2Domain)} />
         </SettingRow>
@@ -602,7 +602,7 @@ export default function SystemSettingsPage() {
 
   function renderVerification() {
     return (
-      <SettingsPanel action={<Button onPress={saveVerification}>{t('save')}</Button>} description={t('sysVerificationHint')} title={t('sysVerification')}>
+      <SettingsPanel action={<Button className="settings-save-button" variant="outline" onPress={saveVerification}>{t('save')}</Button>} description={t('sysVerificationHint')} title={t('sysVerification')}>
         <SettingRow label={t('signUpVerification')}>
           <HeroSelectField
             className="w-44"
@@ -658,7 +658,7 @@ export default function SystemSettingsPage() {
 
   function renderAi() {
     return (
-      <SettingsPanel action={<Button onPress={saveAi}>{t('save')}</Button>} description={t('sysAiHint')} title={t('sysAi')}>
+      <SettingsPanel action={<Button className="settings-save-button" variant="outline" onPress={saveAi}>{t('save')}</Button>} description={t('sysAiHint')} title={t('sysAi')}>
         <SettingRow label={t('codeRecognition')}>
           <EnabledSwitch value={asNumber(settings.aiCode, 1)} onChange={(value) => updateSetting('aiCode', value)} />
         </SettingRow>
@@ -685,7 +685,7 @@ export default function SystemSettingsPage() {
   return (
     <WorkspaceLayout
       actions={
-        <Button isDisabled={loading} variant="secondary" onPress={() => loadSettings()}>
+        <Button isDisabled={loading} variant="outline" onPress={() => loadSettings()}>
           <RefreshCw className={`size-4 ${loading ? 'animate-spin' : ''}`} />
           {t('refresh')}
         </Button>
@@ -750,7 +750,7 @@ export default function SystemSettingsPage() {
               ref={fileInputRef}
               type="file"
             />
-            <Button variant="secondary" onPress={() => fileInputRef.current?.click()}>
+            <Button variant="outline" onPress={() => fileInputRef.current?.click()}>
               <Upload className="size-4" />
               {t('localUpload')}
             </Button>
@@ -785,7 +785,7 @@ export default function SystemSettingsPage() {
                     <Button
                       isIconOnly
                       size="sm"
-                      variant="tertiary"
+                      variant="outline"
                       onPress={() => {
                         const next = { ...tokens };
                         delete next[domain];
@@ -825,10 +825,10 @@ export default function SystemSettingsPage() {
         <SideDrawer
           footer={
             <>
-              <Button onPress={() => setDrawer(null)} variant="secondary">
+              <Button onPress={() => setDrawer(null)} variant="outline">
                 {t('cancel')}
               </Button>
-              <Button isDisabled={saving} onPress={clearS3} variant="secondary">
+              <Button isDisabled={saving} onPress={clearS3} variant="outline">
                 {t('clear')}
               </Button>
               <Button isDisabled={saving} onPress={saveS3}>
@@ -970,7 +970,7 @@ export default function SystemSettingsPage() {
   function drawerFooter(onSave: () => Promise<void> | void) {
     return (
       <>
-        <Button onPress={() => setDrawer(null)} variant="secondary">
+        <Button onPress={() => setDrawer(null)} variant="outline">
           {t('cancel')}
         </Button>
         <Button isDisabled={saving} onPress={onSave}>

@@ -389,7 +389,7 @@ export default function ManagementPage({ resource }: { resource: Resource }) {
             <Plus className="size-4" />
             {t('add')}
           </Button>
-          <Button variant="secondary" onPress={fetchRows}>
+          <Button variant="outline" onPress={fetchRows}>
             <RefreshCw className={`size-4 ${loading ? 'animate-spin' : ''}`} />
             {t('refresh')}
           </Button>
@@ -418,7 +418,7 @@ export default function ManagementPage({ resource }: { resource: Resource }) {
                 fetchRows();
               }}
               title={t('clearUnusedRegKeysConfirmTitle')}
-              variant="secondary"
+              variant="outline"
             >
               {t('clearUnused')}
             </ConfirmButton>
@@ -459,33 +459,33 @@ export default function ManagementPage({ resource }: { resource: Resource }) {
                           <div className="flex justify-end gap-1">
                             {resource === 'users' ? (
                               <>
-                                <Button isIconOnly size="sm" variant="tertiary" onPress={() => openEditUser(row)}>
+                                <Button isIconOnly size="sm" variant="outline" onPress={() => openEditUser(row)}>
                                   <Edit3 className="size-4" />
                                 </Button>
-                                <Button isIconOnly size="sm" variant="tertiary" onPress={() => loadUserAccounts(row)}>
+                                <Button isIconOnly size="sm" variant="outline" onPress={() => loadUserAccounts(row)}>
                                   <Mail className="size-4" />
                                 </Button>
-                                <Button isIconOnly size="sm" variant="tertiary" onPress={() => userRestSendCount(row.userId).then(fetchRows)}>
+                                <Button isIconOnly size="sm" variant="outline" onPress={() => userRestSendCount(row.userId).then(fetchRows)}>
                                   <RotateCcw className="size-4" />
                                 </Button>
                               </>
                             ) : null}
                             {resource === 'roles' ? (
                               <>
-                                <Button isIconOnly size="sm" variant="tertiary" onPress={() => openEditRole(row)}>
+                                <Button isIconOnly size="sm" variant="outline" onPress={() => openEditRole(row)}>
                                   <Edit3 className="size-4" />
                                 </Button>
-                                <Button isIconOnly size="sm" variant="tertiary" onPress={() => roleSetDef(row.roleId).then(fetchRows)}>
+                                <Button isIconOnly size="sm" variant="outline" onPress={() => roleSetDef(row.roleId).then(fetchRows)}>
                                   <Star className="size-4" />
                                 </Button>
                               </>
                             ) : null}
                             {resource === 'regKeys' ? (
                               <>
-                                <Button aria-label={t('copyInviteLink')} isIconOnly size="sm" variant="tertiary" onPress={() => copyInvite(row)}>
+                                <Button aria-label={t('copyInviteLink')} isIconOnly size="sm" variant="outline" onPress={() => copyInvite(row)}>
                                   <Copy className="size-4" />
                                 </Button>
-                                <Button aria-label={t('history')} isIconOnly size="sm" variant="tertiary" onPress={() => loadRegKeyHistory(row)}>
+                                <Button aria-label={t('history')} isIconOnly size="sm" variant="outline" onPress={() => loadRegKeyHistory(row)}>
                                   <History className="size-4" />
                                 </Button>
                               </>
@@ -523,7 +523,7 @@ export default function ManagementPage({ resource }: { resource: Resource }) {
         <SideDrawer
           footer={
             <>
-              <Button onPress={closeDrawer} variant="secondary">
+              <Button onPress={closeDrawer} variant="outline">
                 {t('cancel')}
               </Button>
               <Button onPress={submitUser}>{t('add')}</Button>
@@ -567,7 +567,7 @@ export default function ManagementPage({ resource }: { resource: Resource }) {
         <SideDrawer
           footer={
             <>
-              <Button onPress={closeDrawer} variant="secondary">
+              <Button onPress={closeDrawer} variant="outline">
                 {t('cancel')}
               </Button>
               <Button onPress={submitUserEdit}>{t('save')}</Button>
@@ -596,7 +596,7 @@ export default function ManagementPage({ resource }: { resource: Resource }) {
             />
             {drawer.row.isDel === 1 ? (
               <Button
-                variant="secondary"
+                variant="outline"
                 onPress={async () => {
                   await userRestore(drawer.row.userId, 'normal');
                   notifySuccess(t('saveSuccessMsg'));
@@ -607,7 +607,7 @@ export default function ManagementPage({ resource }: { resource: Resource }) {
                 {t('restore')}
               </Button>
             ) : null}
-            <Button variant="secondary" onPress={() => loadUserAccounts(drawer.row)}>
+            <Button variant="outline" onPress={() => loadUserAccounts(drawer.row)}>
               {t('emailAccount')}
             </Button>
           </div>
@@ -668,7 +668,7 @@ export default function ManagementPage({ resource }: { resource: Resource }) {
         <SideDrawer
           footer={
             <>
-              <Button onPress={closeDrawer} variant="secondary">
+              <Button onPress={closeDrawer} variant="outline">
                 {t('cancel')}
               </Button>
               <Button onPress={submitRole}>{t('save')}</Button>
@@ -730,7 +730,7 @@ export default function ManagementPage({ resource }: { resource: Resource }) {
         <SideDrawer
           footer={
             <>
-              <Button onPress={closeDrawer} variant="secondary">
+              <Button onPress={closeDrawer} variant="outline">
                 {t('cancel')}
               </Button>
               <Button onPress={submitRegKey}>{t('add')}</Button>

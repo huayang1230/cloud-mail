@@ -61,7 +61,7 @@ select {
 
 .mail-shell {
   display: grid;
-  grid-template-columns: minmax(240px, 300px) minmax(340px, 520px) minmax(420px, 1fr);
+  grid-template-columns: minmax(180px, 225px) minmax(340px, 520px) minmax(420px, 1fr);
   height: 100vh;
   width: 100vw;
   overflow: hidden;
@@ -69,7 +69,7 @@ select {
 }
 
 .mail-shell.mail-shell--workspace {
-  grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
+  grid-template-columns: minmax(180px, 225px) minmax(0, 1fr);
 }
 
 .mail-sidebar {
@@ -85,10 +85,16 @@ select {
 }
 
 .mail-list-pane {
+  min-height: 0;
+  overflow: hidden;
   background: var(--background);
 }
 
 .mail-detail-pane {
+  display: flex;
+  min-height: 0;
+  height: 100vh;
+  overflow: hidden;
   padding: 14px;
   background: var(--background);
 }
@@ -104,6 +110,39 @@ select {
   box-shadow:
     0 8px 24px rgb(0 0 0 / 0.06),
     0 1px 2px rgb(0 0 0 / 0.05);
+}
+
+.settings-save-button {
+  min-width: 82px;
+  border-color: rgb(147 197 253 / 0.52);
+  background:
+    linear-gradient(135deg, rgb(37 99 235) 0%, rgb(59 130 246) 48%, rgb(14 165 233) 100%);
+  color: white;
+  box-shadow:
+    0 10px 24px rgb(37 99 235 / 0.22),
+    inset 0 1px 0 rgb(255 255 255 / 0.26);
+}
+
+.settings-save-button:hover,
+.settings-save-button[data-hovered="true"] {
+  border-color: rgb(191 219 254 / 0.66);
+  background:
+    linear-gradient(135deg, rgb(29 78 216) 0%, rgb(37 99 235) 48%, rgb(2 132 199) 100%);
+  color: white;
+  box-shadow:
+    0 12px 28px rgb(37 99 235 / 0.3),
+    inset 0 1px 0 rgb(255 255 255 / 0.3);
+}
+
+.dark .settings-save-button,
+[data-theme="dark"] .settings-save-button {
+  border-color: rgb(147 197 253 / 0.42);
+  background:
+    linear-gradient(135deg, rgb(30 64 175) 0%, rgb(37 99 235) 50%, rgb(6 182 212) 100%);
+  color: white;
+  box-shadow:
+    0 10px 24px rgb(59 130 246 / 0.2),
+    inset 0 1px 0 rgb(255 255 255 / 0.16);
 }
 
 .icon-button {

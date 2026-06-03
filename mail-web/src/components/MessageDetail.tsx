@@ -1,4 +1,4 @@
-import { Avatar, Button, Tooltip as HeroTooltip } from '@heroui/react';
+import { Avatar, Button, ScrollShadow, Tooltip as HeroTooltip } from '@heroui/react';
 import { ArrowLeft, Download, Reply, Star, Trash2 } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -56,7 +56,7 @@ export default function MessageDetail({
 
   if (!email) {
     return (
-      <div className="surface-card flex h-full items-center justify-center rounded-[24px] text-muted">
+      <div className="surface-card flex h-full min-h-0 w-full items-center justify-center rounded-[24px] text-muted">
         {t('noMessagesFound')}
       </div>
     );
@@ -83,8 +83,8 @@ export default function MessageDetail({
   }
 
   return (
-    <article className="surface-card flex h-full flex-col overflow-hidden rounded-[24px]">
-      <header className="flex min-h-16 items-center justify-between px-5">
+    <article className="surface-card flex h-full min-h-0 w-full flex-col overflow-hidden rounded-[24px]">
+      <header className="flex min-h-16 shrink-0 items-center justify-between px-5">
         <div className="flex items-center gap-2">
           {onBack ? (
             <button className="icon-button message-detail-back-button" onClick={onBack} type="button">
@@ -99,7 +99,7 @@ export default function MessageDetail({
                 isIconOnly
                 onConfirm={remove}
                 title={t('deleteEmailConfirmTitle')}
-                variant="tertiary"
+                variant="outline"
               >
                 <Trash2 className="size-5" />
               </ConfirmButton>
@@ -116,7 +116,7 @@ export default function MessageDetail({
         <div className="text-sm text-muted">1 of 1</div>
       </header>
 
-      <div className="flex-1 overflow-auto px-7 py-7">
+      <ScrollShadow className="min-h-0 flex-1 overflow-x-hidden px-7 py-7" offset={12} size={48}>
         <h1 className="mb-9 text-[28px] font-semibold leading-tight">{email.subject || t('subject')}</h1>
         <div className="mb-9 flex items-start justify-between gap-5">
           <div className="flex min-w-0 items-start gap-4">
@@ -179,7 +179,7 @@ export default function MessageDetail({
             </div>
           </div>
         ) : null}
-      </div>
+      </ScrollShadow>
 
       {preview ? (
         <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/70 p-6" onClick={() => setPreview(null)}>

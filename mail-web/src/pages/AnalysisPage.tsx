@@ -338,7 +338,7 @@ export default function AnalysisPage() {
   return (
     <WorkspaceLayout
       actions={
-        <Button variant="secondary" onPress={refresh}>
+        <Button variant="outline" onPress={refresh}>
           <RefreshCw className={`size-4 ${loading ? 'animate-spin' : ''}`} />
           {t('refresh')}
         </Button>

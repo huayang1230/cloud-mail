@@ -24,14 +24,15 @@ export default function AccountSwitcher({ variant = 'compact' }: { variant?: 'co
   const domainList = useAppStore((state) => state.domainList);
   const currentAccountId = useAppStore((state) => state.currentAccountId);
   const setCurrentAccount = useAppStore((state) => state.setCurrentAccount);
+  const canQueryAccounts = hasPerm('account:query');
   const [accounts, setAccounts] = useState<Account[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(canQueryAccounts);
   const [showAdd, setShowAdd] = useState(false);
   const [emailPrefix, setEmailPrefix] = useState('');
   const [suffix, setSuffix] = useState(domainList[0] || '');
 
   async function refresh() {
-    if (!hasPerm('account:query')) return;
+    if (!canQueryAccounts) return;
     setLoading(true);
     try {
       const list = (await accountList(0, 30, null)) as any[];
@@ -70,7 +71,7 @@ export default function AccountSwitcher({ variant = 'compact' }: { variant?: 'co
     notifySuccess(t('copySuccessMsg'));
   }
 
-  if (settings.manyEmail !== 0 && !accounts.length) return null;
+  if (settings.manyEmail !== 0 && !accounts.length && !loading) return null;
 
   const isPanel = variant === 'panel';
 
@@ -115,6 +116,7 @@ export default function AccountSwitcher({ variant = 'compact' }: { variant?: 'co
       ) : null}
 
       <div className={`${isPanel ? 'max-h-[calc(100vh-310px)]' : 'max-h-48'} space-y-2 overflow-auto pr-1`}>
+        {loading && !accounts.length ? <AccountSkeleton /> : null}
         {accounts.map((account, index) => (
           <div
             className={`w-full rounded-2xl p-3 text-left transition ${
@@ -176,7 +178,7 @@ export default function AccountSwitcher({ variant = 'compact' }: { variant?: 'co
                     }}
                     size="sm"
                     title={t('deleteAccountAddressConfirmTitle')}
-                    variant="tertiary"
+                    variant="outline"
                   >
                     <Trash2 className="size-4" />
                   </ConfirmButton>
@@ -188,6 +190,27 @@ export default function AccountSwitcher({ variant = 'compact' }: { variant?: 'co
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+function AccountSkeleton() {
+  return (
+    <div className="space-y-2" aria-hidden="true">
+      {Array.from({ length: 3 }).map((_, index) => (
+        <div className="rounded-2xl bg-surface-secondary p-3" key={index}>
+          <div className="flex items-center justify-between gap-3">
+            <div className="min-w-0 flex-1 space-y-2">
+              <div className="skeleton skeleton--shimmer h-4 w-32 rounded-full" />
+              <div className="skeleton skeleton--shimmer h-3 w-52 max-w-full rounded-full" />
+            </div>
+            <div className="flex shrink-0 gap-2">
+              <div className="skeleton skeleton--shimmer size-7 rounded-full" />
+              <div className="skeleton skeleton--shimmer size-7 rounded-full" />
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
