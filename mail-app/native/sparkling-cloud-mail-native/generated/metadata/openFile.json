@@ -1,0 +1,63 @@
+{
+  "name": "openFile",
+  "moduleName": "CloudMailNative",
+  "packageName": "net.yzsaas.mail.cloudmailnative",
+  "source": "src/cloud-mail-native.d.ts",
+  "request": {
+    "kind": "reference",
+    "name": "OpenFileRequest"
+  },
+  "response": {
+    "kind": "reference",
+    "name": "CloudMailNativeResponse"
+  },
+  "interfaces": {
+    "OpenFileRequest": {
+      "name": "OpenFileRequest",
+      "fields": [
+        {
+          "name": "filePath",
+          "optional": false,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        },
+        {
+          "name": "mimeType",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    "CloudMailNativeResponse": {
+      "name": "CloudMailNativeResponse",
+      "fields": [
+        {
+          "name": "success",
+          "optional": false,
+          "defaultValue": {
+            "kind": "boolean",
+            "value": true
+          },
+          "type": {
+            "kind": "primitive",
+            "name": "boolean"
+          }
+        },
+        {
+          "name": "message",
+          "optional": true,
+          "type": {
+            "kind": "primitive",
+            "name": "string"
+          }
+        }
+      ]
+    }
+  },
+  "generatedAt": "2026-06-03T17:32:43.589Z"
+}

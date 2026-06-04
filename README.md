@@ -120,26 +120,32 @@ cloud-mail
 │   ├── package.json			# 项目依赖
 │   └── wrangler.toml			# 项目配置
 │
-└── mail-web				    # React 前端项目
-    ├── src
-    │   ├── api 			    # api接口
-    │   ├── components			# 自定义组件
-    │   ├── i18n			    # 语言国际化
-    │   ├── lib			    # 请求、权限、工具类
-    │   ├── pages			    # 页面组件
-    │   ├── store			    # 全局状态管理
-    │   ├── App.tsx			    # 入口组件
-    │   ├── main.tsx			    # 入口 tsx
-    │   └── styles.css			# 全局css
-    ├── package.json			# 项目依赖
-    └── .env.release			# 发布环境配置
+├── mail-web				    # React 前端项目
+│   ├── src
+│   │   ├── api 			    # api接口
+│   │   ├── components			# 自定义组件
+│   │   ├── i18n			    # 语言国际化
+│   │   ├── lib			    # 请求、权限、工具类
+│   │   ├── pages			    # 页面组件
+│   │   ├── store			    # 全局状态管理
+│   │   ├── App.tsx			    # 入口组件
+│   │   ├── main.tsx			    # 入口 tsx
+│   │   └── styles.css			# 全局css
+│   ├── package.json			# 项目依赖
+│   └── .env.release			# 发布环境配置
+│
+└── mail-app                    # Sparkling iOS / Android 移动端项目
+    ├── src                     # ReactLynx 页面和业务代码
+    ├── android                 # Android 原生工程
+    ├── ios                     # iOS 原生工程
+    └── package.json            # 移动端脚本与依赖
 ```
 
 ## 本地调试
 
 ### 环境准备
 
-本项目分为两个独立目录：`mail-web` 是 React + HeroUI 前端，`mail-worker` 是 Cloudflare Workers 后端。建议使用 Node.js 20+ 和 pnpm。
+本项目主要包含 `mail-web` React + HeroUI 前端、`mail-worker` Cloudflare Workers 后端，以及 `mail-app` Sparkling 移动端。Web/Worker 本地调试建议使用 Node.js 20+ 和 pnpm，移动端建议使用 Node.js 24。
 
 如果本机还没有 pnpm，可以先启用 Corepack：
 
@@ -190,6 +196,29 @@ curl http://127.0.0.1:8787/init/<jwt_secret>
 ```
 
 返回 `success` 后再打开前端登录页。管理员账号由 `wrangler-dev.toml` 的 `[vars].admin` 决定。
+
+### 移动端 iOS / Android 调试
+
+移动端项目在 `mail-app`，默认接口指向 `https://mail.yzsaas.net/api`。Sparkling 推荐使用 Node.js 24；iOS 还需要 Xcode、iOS Simulator 和 CocoaPods 可用。
+
+```bash
+cd mail-app
+pnpm install
+```
+
+启动 iOS：
+
+```bash
+export PATH="/opt/homebrew/opt/ruby/bin:$HOME/.gem/ruby/4.0.0/bin:$HOME/.nvm/versions/node/v24.16.0/bin:$PATH"
+pnpm run run:ios
+```
+
+启动 Android：
+
+```bash
+export PATH="$HOME/.nvm/versions/node/v24.16.0/bin:$PATH"
+pnpm run run:android
+```
 
 ### Worker 一体化预览
 

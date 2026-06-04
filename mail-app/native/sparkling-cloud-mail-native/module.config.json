@@ -1,0 +1,6 @@
+{
+  "packageName": "net.yzsaas.mail.cloudmailnative",
+  "moduleName": "CloudMailNative",
+  "androidDsl": "kts",
+  "projectName": "native/sparkling-cloud-mail-native"
+}

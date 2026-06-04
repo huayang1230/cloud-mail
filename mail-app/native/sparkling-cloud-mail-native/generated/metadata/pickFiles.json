@@ -1,0 +1,50 @@
+{
+  "name": "pickFiles",
+  "moduleName": "CloudMailNative",
+  "packageName": "net.yzsaas.mail.cloudmailnative",
+  "source": "src/cloud-mail-native.d.ts",
+  "request": {
+    "kind": "reference",
+    "name": "PickFilesRequest"
+  },
+  "response": {
+    "kind": "reference",
+    "name": "PickFilesResponse"
+  },
+  "interfaces": {
+    "PickFilesRequest": {
+      "name": "PickFilesRequest",
+      "fields": [
+        {
+          "name": "maxCount",
+          "optional": true,
+          "defaultValue": {
+            "kind": "number",
+            "value": 6
+          },
+          "type": {
+            "kind": "primitive",
+            "name": "number"
+          }
+        }
+      ]
+    },
+    "PickFilesResponse": {
+      "name": "PickFilesResponse",
+      "fields": [
+        {
+          "name": "files",
+          "optional": false,
+          "type": {
+            "kind": "array",
+            "elementType": {
+              "kind": "reference",
+              "name": "PickedFile"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "generatedAt": "2026-06-03T17:32:43.587Z"
+}
