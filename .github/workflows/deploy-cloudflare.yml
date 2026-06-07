@@ -5,7 +5,7 @@ on:
     branches: [ main ]
     paths:
       - "mail-worker/**"
-      - "mail-vue/**"
+      - "mail-web/**"
   workflow_dispatch:
 
 jobs:
